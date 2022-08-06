@@ -28,6 +28,7 @@ public class Address {
     @Column(name = "street_name")
     private String streetName;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "street_type")
     private StreetType streetType;
 
@@ -41,7 +42,7 @@ public class Address {
     @JoinColumn(name = "person_id")
     private Person person;
 
-    @Column(name = "deleted", columnDefinition = "boolean default false")
-    private boolean deleted;
+    @Column(name = "deleted")
+    private boolean deleted = false;
 
 }

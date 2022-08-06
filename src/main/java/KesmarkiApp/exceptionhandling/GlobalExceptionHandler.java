@@ -27,4 +27,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(AddressNotFoundException.class)
+    public ResponseEntity<List<ValidationError>> handleAddressNotFound(AddressNotFoundException exception) {
+        ValidationError validationError = new ValidationError("addressId",
+                "Address with id " + exception.getIdNotFound() + " is not found.");
+        return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
+    }
 }

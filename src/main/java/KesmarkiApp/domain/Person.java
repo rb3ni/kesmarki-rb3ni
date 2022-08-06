@@ -33,7 +33,7 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Address> addresses;
 
-    @Column(name = "deleted", columnDefinition = "boolean default false")
-    private boolean deleted;
+    @Column(name = "deleted")
+    private boolean deleted = false;
 
 }

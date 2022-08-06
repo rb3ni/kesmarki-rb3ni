@@ -24,7 +24,6 @@ public class PersonService {
         this.modelMapper = modelMapper;
     }
 
-
     public PersonInfo savePerson(PersonCreateCommand command) {
         Person personToSave = modelMapper.map(command, Person.class);
         personToSave.setAddresses(new ArrayList<>());
@@ -38,16 +37,16 @@ public class PersonService {
         return modelMapper.map(person, PersonInfo.class);
     }
 
+    public void deletePerson(Integer personId) {
+        Person personToDelete = findPersonById(personId);
+        personRepository.deletePerson(personToDelete);
+    }
+
     protected Person findPersonById(Integer personId) {
         Optional<Person> personFound = personRepository.findEventById(personId);
         if (personFound.isEmpty() || personFound.get().isDeleted()) {
             throw new PersonNotFoundException(personId);
         }
         return personFound.get();
-    }
-
-    public void deletePerson(Integer personId) {
-        Person personToDelete = findPersonById(personId);
-        personRepository.deletePerson(personToDelete);
     }
 }
