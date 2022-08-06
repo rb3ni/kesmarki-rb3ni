@@ -3,6 +3,7 @@ package KesmarkiApp.service;
 import KesmarkiApp.domain.Person;
 import KesmarkiApp.dto.PersonCreateCommand;
 import KesmarkiApp.dto.PersonInfo;
+import KesmarkiApp.dto.PersonInfoList;
 import KesmarkiApp.exceptionhandling.PersonNotFoundException;
 import KesmarkiApp.repository.PersonRepository;
 import org.modelmapper.ModelMapper;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -35,6 +38,13 @@ public class PersonService {
     public PersonInfo getPersonById(Integer personId) {
         Person person = findPersonById(personId);
         return modelMapper.map(person, PersonInfo.class);
+    }
+
+    public List<PersonInfoList> getPeople() {
+        List<Person> people = personRepository.findPeople();
+        return people.stream()
+                .map(person -> modelMapper.map(person, PersonInfoList.class))
+                .collect(Collectors.toList());
     }
 
     public void deletePerson(Integer personId) {

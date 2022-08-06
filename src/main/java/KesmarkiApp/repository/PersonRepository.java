@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,6 +21,11 @@ public class PersonRepository {
 
     public Optional<Person> findEventById(Integer personId) {
         return Optional.ofNullable(entityManager.find(Person.class, personId));
+    }
+
+    public List<Person> findPeople() {
+        return entityManager.createQuery("SELECT p FROM Person p " +
+                "WHERE p.deleted = false ", Person.class).getResultList();
     }
 
     public void deletePerson(Person personToDelete) {
