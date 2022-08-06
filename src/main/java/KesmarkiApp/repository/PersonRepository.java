@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Optional;
 
 @Repository
 public class PersonRepository {
@@ -15,5 +16,9 @@ public class PersonRepository {
     public Person savePerson(Person toSave) {
         entityManager.persist(toSave);
         return toSave;
+    }
+
+    public Optional<Person> findEventById(Integer personId) {
+        return Optional.ofNullable(entityManager.find(Person.class, personId));
     }
 }

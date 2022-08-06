@@ -41,5 +41,7 @@ public class Address {
     @JoinColumn(name = "person_id")
     private Person person;
 
+    @Column(name = "deleted")
+    private boolean deleted;
 
 }

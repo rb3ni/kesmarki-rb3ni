@@ -1,0 +1,15 @@
+spring:
+  datasource:
+#    url: jdbc:sqlserver://localhost/kesmarkiDB?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true
+    url: jdbc:sqlserver://localhost;databaseName=kesmarkiDB;encrypt=true;trustServerCertificate=true;
+    username: kesmarki
+    password: kesmarki
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+    show-sql: on
