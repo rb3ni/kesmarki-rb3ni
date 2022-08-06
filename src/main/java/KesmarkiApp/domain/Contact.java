@@ -22,8 +22,8 @@ public class Contact {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @Column(name = "OtherContactDetail")
-    private String OtherContactDetail;
+    @Column(name = "otherContactDetail")
+    private String otherContactDetail;
 
     @ManyToOne
     @JoinColumn(name = "address_id")

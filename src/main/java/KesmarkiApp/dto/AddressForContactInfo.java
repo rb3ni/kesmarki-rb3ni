@@ -4,11 +4,9 @@ import KesmarkiApp.domain.enums.StreetType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
-public class AddressInfo {
+public class AddressForContactInfo {
 
     private Integer id;
     private String country;
@@ -16,7 +14,5 @@ public class AddressInfo {
     private String streetName;
     private StreetType streetType;
     private String streetNumber;
-    private List<ContactInfoList> contacts;
-    private PersonInfoForAddress person;
 
 }

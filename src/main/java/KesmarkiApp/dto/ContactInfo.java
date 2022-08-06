@@ -5,11 +5,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ContactInfoList {
+public class ContactInfo {
 
     private Integer id;
     private String email;
     private String phoneNumber;
     private String otherContactDetail;
+    private AddressForContactInfo address;
 
 }

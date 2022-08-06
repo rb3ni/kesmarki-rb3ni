@@ -5,9 +5,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ContactInfoList {
+public class ContactCreateCommand {
 
-    private Integer id;
     private String email;
     private String phoneNumber;
     private String otherContactDetail;

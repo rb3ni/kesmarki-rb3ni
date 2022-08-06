@@ -33,4 +33,11 @@ public class GlobalExceptionHandler {
                 "Address with id " + exception.getIdNotFound() + " is not found.");
         return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ContactNotFoundException.class)
+    public ResponseEntity<List<ValidationError>> handleContactNotFound(ContactNotFoundException exception) {
+        ValidationError validationError = new ValidationError("contactId",
+                "Contact with id " + exception.getIdNotFound() + " is not found.");
+        return new ResponseEntity<>(List.of(validationError), HttpStatus.BAD_REQUEST);
+    }
 }
