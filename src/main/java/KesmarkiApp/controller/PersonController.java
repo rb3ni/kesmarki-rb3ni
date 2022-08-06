@@ -34,4 +34,12 @@ public class PersonController {
         PersonInfo person = personService.getPersonById(personId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{personId}")
+    public ResponseEntity<Void> deletePerson(@PathVariable Integer personId) {
+        log.info("Http request, DELETE /api/persons/{personId}, parameter: "
+                + personId);
+        personService.deletePerson(personId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

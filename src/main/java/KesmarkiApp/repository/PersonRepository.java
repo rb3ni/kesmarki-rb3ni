@@ -21,4 +21,8 @@ public class PersonRepository {
     public Optional<Person> findEventById(Integer personId) {
         return Optional.ofNullable(entityManager.find(Person.class, personId));
     }
+
+    public void deletePerson(Person personToDelete) {
+        personToDelete.setDeleted(true);
+    }
 }

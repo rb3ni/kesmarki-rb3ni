@@ -29,7 +29,7 @@ public class Contact {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @Column(name = "deleted")
+    @Column(name = "deleted", columnDefinition = "boolean default false")
     private boolean deleted;
 
 }

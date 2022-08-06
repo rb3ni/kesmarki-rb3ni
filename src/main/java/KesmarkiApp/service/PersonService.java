@@ -45,4 +45,9 @@ public class PersonService {
         }
         return personFound.get();
     }
+
+    public void deletePerson(Integer personId) {
+        Person personToDelete = findPersonById(personId);
+        personRepository.deletePerson(personToDelete);
+    }
 }

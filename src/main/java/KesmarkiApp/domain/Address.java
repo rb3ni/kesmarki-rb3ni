@@ -41,7 +41,7 @@ public class Address {
     @JoinColumn(name = "person_id")
     private Person person;
 
-    @Column(name = "deleted")
+    @Column(name = "deleted", columnDefinition = "boolean default false")
     private boolean deleted;
 
 }
