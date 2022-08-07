@@ -1,6 +1,5 @@
 spring:
   datasource:
-#    url: jdbc:sqlserver://localhost/kesmarkiDB?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true
     url: jdbc:sqlserver://localhost;databaseName=kesmarkiDB;encrypt=true;trustServerCertificate=true;
     username: kesmarki
     password: kesmarki
