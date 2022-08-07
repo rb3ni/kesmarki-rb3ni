@@ -2,7 +2,7 @@ package KesmarkiApp.service;
 
 import KesmarkiApp.domain.Address;
 import KesmarkiApp.domain.Person;
-import KesmarkiApp.dto.AddressCreateCommand;
+import KesmarkiApp.dto.command.AddressCreateCommand;
 import KesmarkiApp.dto.AddressInfo;
 import KesmarkiApp.dto.ContactInfoList;
 import KesmarkiApp.dto.PersonInfoList;

@@ -1,6 +1,6 @@
 package KesmarkiApp.controller;
 
-import KesmarkiApp.dto.AddressCreateCommand;
+import KesmarkiApp.dto.command.AddressCreateCommand;
 import KesmarkiApp.dto.AddressInfo;
 import KesmarkiApp.service.AddressService;
 import lombok.extern.slf4j.Slf4j;

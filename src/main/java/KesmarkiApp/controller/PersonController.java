@@ -1,6 +1,6 @@
 package KesmarkiApp.controller;
 
-import KesmarkiApp.dto.PersonCreateCommand;
+import KesmarkiApp.dto.command.PersonCreateCommand;
 import KesmarkiApp.dto.PersonInfo;
 import KesmarkiApp.dto.PersonInfoList;
 import KesmarkiApp.service.PersonService;

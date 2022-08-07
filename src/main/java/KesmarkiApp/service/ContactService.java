@@ -3,7 +3,7 @@ package KesmarkiApp.service;
 import KesmarkiApp.domain.Address;
 import KesmarkiApp.domain.Contact;
 import KesmarkiApp.dto.AddressForContactInfo;
-import KesmarkiApp.dto.ContactCreateCommand;
+import KesmarkiApp.dto.command.ContactCreateCommand;
 import KesmarkiApp.dto.ContactInfo;
 import KesmarkiApp.exceptionhandling.ContactNotFoundException;
 import KesmarkiApp.repository.ContactRepository;

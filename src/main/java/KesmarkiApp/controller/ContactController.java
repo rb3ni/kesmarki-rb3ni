@@ -1,6 +1,6 @@
 package KesmarkiApp.controller;
 
-import KesmarkiApp.dto.ContactCreateCommand;
+import KesmarkiApp.dto.command.ContactCreateCommand;
 import KesmarkiApp.dto.ContactInfo;
 import KesmarkiApp.service.ContactService;
 import lombok.extern.slf4j.Slf4j;
