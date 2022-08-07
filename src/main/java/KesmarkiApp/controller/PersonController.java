@@ -1,8 +1,10 @@
 package KesmarkiApp.controller;
 
+import KesmarkiApp.dto.AddressInfo;
 import KesmarkiApp.dto.command.PersonCreateCommand;
 import KesmarkiApp.dto.PersonInfo;
 import KesmarkiApp.dto.PersonInfoList;
+import KesmarkiApp.dto.command.PersonNameUpdateCommand;
 import KesmarkiApp.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -42,6 +44,15 @@ public class PersonController {
         log.info("Http request, GET /api/people");
         List<PersonInfoList> persons = personService.getPeople();
         return new ResponseEntity<>(persons, HttpStatus.OK);
+    }
+
+    @PutMapping("/{personId}")
+    public ResponseEntity<PersonInfo> modifyPersonName(@PathVariable Integer personId,
+                                                       @Valid @RequestBody PersonNameUpdateCommand command) {
+        log.info("Http request, PUT /api/people/{personId}, body: " + command.toString() +
+                ", parameters: " + personId);
+        PersonInfo modifyPersonName = personService.modifyPersonName(personId, command);
+        return new ResponseEntity<>(modifyPersonName, HttpStatus.OK);
     }
 
     @DeleteMapping("/{personId}")

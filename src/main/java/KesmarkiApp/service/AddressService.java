@@ -2,10 +2,11 @@ package KesmarkiApp.service;
 
 import KesmarkiApp.domain.Address;
 import KesmarkiApp.domain.Person;
-import KesmarkiApp.dto.command.AddressCreateCommand;
 import KesmarkiApp.dto.AddressInfo;
 import KesmarkiApp.dto.ContactInfoList;
 import KesmarkiApp.dto.PersonInfoList;
+import KesmarkiApp.dto.command.AddressCreateCommand;
+import KesmarkiApp.dto.command.AddressUpdateCommand;
 import KesmarkiApp.exceptionhandling.AddressNotFoundException;
 import KesmarkiApp.repository.AddressRepository;
 import org.modelmapper.ModelMapper;
@@ -43,6 +44,17 @@ public class AddressService {
     public AddressInfo getAddressById(Integer addressId) {
         Address address = findAddressById(addressId);
         return mapAddressToAddressInfo(address);
+    }
+
+    public AddressInfo modifyAddress(Integer addressId, AddressUpdateCommand command) {
+        Address addressToModify = findAddressById(addressId);
+        addressToModify.setCountry(command.getCountry());
+        addressToModify.setPostcode(command.getPostcode());
+        addressToModify.setStreetName(command.getStreetName());
+        addressToModify.setStreetType(command.getStreetType());
+        addressToModify.setStreetNumber(command.getStreetNumber());
+
+        return mapAddressToAddressInfo(addressToModify);
     }
 
     public void deleteAddress(Integer addressId) {

@@ -2,8 +2,12 @@ package KesmarkiApp.service;
 
 import KesmarkiApp.domain.Address;
 import KesmarkiApp.domain.Person;
-import KesmarkiApp.dto.*;
+import KesmarkiApp.dto.AddressInfoList;
+import KesmarkiApp.dto.ContactInfoList;
+import KesmarkiApp.dto.PersonInfo;
+import KesmarkiApp.dto.PersonInfoList;
 import KesmarkiApp.dto.command.PersonCreateCommand;
+import KesmarkiApp.dto.command.PersonNameUpdateCommand;
 import KesmarkiApp.exceptionhandling.PersonNotFoundException;
 import KesmarkiApp.repository.PersonRepository;
 import org.modelmapper.ModelMapper;
@@ -45,6 +49,13 @@ public class PersonService {
         return people.stream()
                 .map(person -> modelMapper.map(person, PersonInfoList.class))
                 .collect(Collectors.toList());
+    }
+
+    public PersonInfo modifyPersonName(Integer personId, PersonNameUpdateCommand command) {
+        Person personToModify = findPersonById(personId);
+        personToModify.setFirstName(command.getFirstName());
+
+        return mapPersonToPersonInfo(personToModify);
     }
 
     public void deletePerson(Integer personId) {

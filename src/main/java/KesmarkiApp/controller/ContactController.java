@@ -1,7 +1,10 @@
 package KesmarkiApp.controller;
 
+import KesmarkiApp.dto.AddressInfo;
+import KesmarkiApp.dto.command.AddressUpdateCommand;
 import KesmarkiApp.dto.command.ContactCreateCommand;
 import KesmarkiApp.dto.ContactInfo;
+import KesmarkiApp.dto.command.ContactPhoneNumberUpdateCommand;
 import KesmarkiApp.service.ContactService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,6 +38,15 @@ public class ContactController {
         log.info("Http request, GET /api/contacts/{contactId}, parameter: " + contactId);
         ContactInfo contact = contactService.getContactById(contactId);
         return new ResponseEntity<>(contact, HttpStatus.OK);
+    }
+
+    @PutMapping("/{contactId}")
+    public ResponseEntity<ContactInfo> modifyContactPhoneNumber(@PathVariable Integer contactId,
+                                                     @Valid @RequestBody ContactPhoneNumberUpdateCommand command) {
+        log.info("Http request, PUT /api/contacts/{contactId}, body: " + command.toString() +
+                ", parameters: " + contactId);
+        ContactInfo modifyContact = contactService.modifyContactPhoneNumber(contactId, command);
+        return new ResponseEntity<>(modifyContact, HttpStatus.OK);
     }
 
     @DeleteMapping("/{contactId}")

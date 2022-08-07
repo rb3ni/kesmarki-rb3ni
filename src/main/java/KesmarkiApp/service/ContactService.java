@@ -3,8 +3,9 @@ package KesmarkiApp.service;
 import KesmarkiApp.domain.Address;
 import KesmarkiApp.domain.Contact;
 import KesmarkiApp.dto.AddressForContactInfo;
-import KesmarkiApp.dto.command.ContactCreateCommand;
 import KesmarkiApp.dto.ContactInfo;
+import KesmarkiApp.dto.command.ContactCreateCommand;
+import KesmarkiApp.dto.command.ContactPhoneNumberUpdateCommand;
 import KesmarkiApp.exceptionhandling.ContactNotFoundException;
 import KesmarkiApp.repository.ContactRepository;
 import org.modelmapper.ModelMapper;
@@ -40,6 +41,13 @@ public class ContactService {
     public ContactInfo getContactById(Integer contactId) {
         Contact contact = findContactById(contactId);
         return mapContactToContactInfo(contact);
+    }
+
+    public ContactInfo modifyContactPhoneNumber(Integer contactId, ContactPhoneNumberUpdateCommand command) {
+        Contact contactToModify = findContactById(contactId);
+        contactToModify.setPhoneNumber(command.getPhoneNumber());
+
+        return mapContactToContactInfo(contactToModify);
     }
 
     public void deleteContact(Integer contactId) {

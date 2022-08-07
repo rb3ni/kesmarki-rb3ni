@@ -1,7 +1,8 @@
 package KesmarkiApp.controller;
 
-import KesmarkiApp.dto.command.AddressCreateCommand;
 import KesmarkiApp.dto.AddressInfo;
+import KesmarkiApp.dto.command.AddressCreateCommand;
+import KesmarkiApp.dto.command.AddressUpdateCommand;
 import KesmarkiApp.service.AddressService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,15 @@ public class AddressController {
         log.info("Http request, GET /api/addresses/{addressId}, parameter: " + addressId);
         AddressInfo address = addressService.getAddressById(addressId);
         return new ResponseEntity<>(address, HttpStatus.OK);
+    }
+
+    @PutMapping("/{addressId}")
+    public ResponseEntity<AddressInfo> modifyAddress(@PathVariable Integer addressId,
+                                                     @Valid @RequestBody AddressUpdateCommand command) {
+        log.info("Http request, PUT /api/addresses/{addressId}, body: " + command.toString() +
+                ", parameters: " + addressId);
+        AddressInfo modifyAddress = addressService.modifyAddress(addressId, command);
+        return new ResponseEntity<>(modifyAddress, HttpStatus.OK);
     }
 
     @DeleteMapping("/{addressId}")
