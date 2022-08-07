@@ -1,6 +1,7 @@
 package KesmarkiApp.dto.command;
 
 import KesmarkiApp.domain.enums.StreetType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class AddressUpdateCommand {
 
     @NotBlank(message = "must be not blank")

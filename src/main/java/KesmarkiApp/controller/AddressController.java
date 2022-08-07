@@ -28,7 +28,7 @@ public class AddressController {
         log.info("Http request, POST /api/addresses/{personId}, body: " + command.toString() +
                 ", parameters: " + personId);
         AddressInfo address = addressService.saveAddress(personId, command);
-        return new ResponseEntity<>(address, HttpStatus.OK);
+        return new ResponseEntity<>(address, HttpStatus.CREATED);
     }
 
     @GetMapping("/{addressId}")

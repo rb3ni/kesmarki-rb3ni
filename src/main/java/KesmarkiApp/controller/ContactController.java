@@ -28,7 +28,7 @@ public class ContactController {
         log.info("Http request, POST /api/contacts/addresses/{addressId}, body: " + command.toString() +
                 ", parameters: " + addressId);
         ContactInfo contact = contactService.saveContact(addressId, command);
-        return new ResponseEntity<>(contact, HttpStatus.OK);
+        return new ResponseEntity<>(contact, HttpStatus.CREATED);
     }
 
     @GetMapping("/{contactId}")
