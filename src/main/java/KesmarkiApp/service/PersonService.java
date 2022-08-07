@@ -64,7 +64,7 @@ public class PersonService {
     }
 
     protected Person findPersonById(Integer personId) {
-        Optional<Person> personFound = personRepository.findEventById(personId);
+        Optional<Person> personFound = personRepository.findPersonById(personId);
         if (personFound.isEmpty() || personFound.get().isDeleted()) {
             throw new PersonNotFoundException(personId);
         }

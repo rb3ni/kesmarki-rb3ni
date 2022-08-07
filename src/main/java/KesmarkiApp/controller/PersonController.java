@@ -1,9 +1,8 @@
 package KesmarkiApp.controller;
 
-import KesmarkiApp.dto.AddressInfo;
-import KesmarkiApp.dto.command.PersonCreateCommand;
 import KesmarkiApp.dto.PersonInfo;
 import KesmarkiApp.dto.PersonInfoList;
+import KesmarkiApp.dto.command.PersonCreateCommand;
 import KesmarkiApp.dto.command.PersonNameUpdateCommand;
 import KesmarkiApp.service.PersonService;
 import lombok.extern.slf4j.Slf4j;

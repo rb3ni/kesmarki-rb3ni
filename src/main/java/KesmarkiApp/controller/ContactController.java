@@ -1,9 +1,7 @@
 package KesmarkiApp.controller;
 
-import KesmarkiApp.dto.AddressInfo;
-import KesmarkiApp.dto.command.AddressUpdateCommand;
-import KesmarkiApp.dto.command.ContactCreateCommand;
 import KesmarkiApp.dto.ContactInfo;
+import KesmarkiApp.dto.command.ContactCreateCommand;
 import KesmarkiApp.dto.command.ContactPhoneNumberUpdateCommand;
 import KesmarkiApp.service.ContactService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +25,7 @@ public class ContactController {
     @PostMapping("/addresses/{addressId}")
     public ResponseEntity<ContactInfo> saveContact(@PathVariable Integer addressId,
                                                    @Valid @RequestBody ContactCreateCommand command) {
-        log.info("Http request, POST /api/contacts/{addressId}, body: " + command.toString() +
+        log.info("Http request, POST /api/contacts/addresses/{addressId}, body: " + command.toString() +
                 ", parameters: " + addressId);
         ContactInfo contact = contactService.saveContact(addressId, command);
         return new ResponseEntity<>(contact, HttpStatus.OK);
@@ -42,7 +40,7 @@ public class ContactController {
 
     @PutMapping("/{contactId}")
     public ResponseEntity<ContactInfo> modifyContactPhoneNumber(@PathVariable Integer contactId,
-                                                     @Valid @RequestBody ContactPhoneNumberUpdateCommand command) {
+                                                                @Valid @RequestBody ContactPhoneNumberUpdateCommand command) {
         log.info("Http request, PUT /api/contacts/{contactId}, body: " + command.toString() +
                 ", parameters: " + contactId);
         ContactInfo modifyContact = contactService.modifyContactPhoneNumber(contactId, command);

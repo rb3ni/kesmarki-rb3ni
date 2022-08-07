@@ -19,7 +19,7 @@ public class PersonRepository {
         return toSave;
     }
 
-    public Optional<Person> findEventById(Integer personId) {
+    public Optional<Person> findPersonById(Integer personId) {
         return Optional.ofNullable(entityManager.find(Person.class, personId));
     }
 
