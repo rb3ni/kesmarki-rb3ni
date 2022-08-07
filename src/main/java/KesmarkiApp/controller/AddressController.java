@@ -21,7 +21,7 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @PostMapping("/{personId}")
+    @PostMapping("/people/{personId}")
     public ResponseEntity<AddressInfo> saveAddress(@PathVariable Integer personId,
                                                    @Valid @RequestBody AddressCreateCommand command) {
         log.info("Http request, POST /api/addresses/{personId}, body: " + command.toString() +

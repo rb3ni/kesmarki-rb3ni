@@ -1,9 +1,8 @@
 package KesmarkiApp.service;
 
+import KesmarkiApp.domain.Address;
 import KesmarkiApp.domain.Person;
-import KesmarkiApp.dto.PersonCreateCommand;
-import KesmarkiApp.dto.PersonInfo;
-import KesmarkiApp.dto.PersonInfoList;
+import KesmarkiApp.dto.*;
 import KesmarkiApp.exceptionhandling.PersonNotFoundException;
 import KesmarkiApp.repository.PersonRepository;
 import org.modelmapper.ModelMapper;
@@ -32,12 +31,12 @@ public class PersonService {
         personToSave.setAddresses(new ArrayList<>());
 
         Person personSaved = personRepository.savePerson(personToSave);
-        return modelMapper.map(personSaved, PersonInfo.class);
+        return mapPersonToPersonInfo(personSaved);
     }
 
     public PersonInfo getPersonById(Integer personId) {
         Person person = findPersonById(personId);
-        return modelMapper.map(person, PersonInfo.class);
+        return mapPersonToPersonInfo(person);
     }
 
     public List<PersonInfoList> getPeople() {
@@ -58,5 +57,24 @@ public class PersonService {
             throw new PersonNotFoundException(personId);
         }
         return personFound.get();
+    }
+
+    private PersonInfo mapPersonToPersonInfo(Person person) {
+        PersonInfo personInfo = modelMapper.map(person, PersonInfo.class);
+        List<AddressInfoList> addressInfoList = new ArrayList<>();
+
+        for (Address address : person.getAddresses()) {
+            if (!address.isDeleted()) {
+                List<ContactInfoList> contactInfoList = address.getContacts().stream()
+                        .filter(contact -> !contact.isDeleted())
+                        .map(contact -> modelMapper.map(contact, ContactInfoList.class)).toList();
+
+                AddressInfoList addressMapped = modelMapper.map(address, AddressInfoList.class);
+                addressMapped.setContacts(contactInfoList);
+                addressInfoList.add(addressMapped);
+            }
+        }
+        personInfo.setAddresses(addressInfoList);
+        return personInfo;
     }
 }

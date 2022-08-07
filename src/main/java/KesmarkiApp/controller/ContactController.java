@@ -21,7 +21,7 @@ public class ContactController {
         this.contactService = contactService;
     }
 
-    @PostMapping("/{addressId}")
+    @PostMapping("/addresses/{addressId}")
     public ResponseEntity<ContactInfo> saveContact(@PathVariable Integer addressId,
                                                    @Valid @RequestBody ContactCreateCommand command) {
         log.info("Http request, POST /api/contacts/{addressId}, body: " + command.toString() +

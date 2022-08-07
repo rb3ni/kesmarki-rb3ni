@@ -17,6 +17,6 @@ public class AddressInfo {
     private StreetType streetType;
     private String streetNumber;
     private List<ContactInfoList> contacts;
-    private PersonInfoForAddress person;
+    private PersonInfoList person;
 
 }

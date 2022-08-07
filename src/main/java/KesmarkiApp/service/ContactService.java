@@ -2,6 +2,7 @@ package KesmarkiApp.service;
 
 import KesmarkiApp.domain.Address;
 import KesmarkiApp.domain.Contact;
+import KesmarkiApp.dto.AddressForContactInfo;
 import KesmarkiApp.dto.ContactCreateCommand;
 import KesmarkiApp.dto.ContactInfo;
 import KesmarkiApp.exceptionhandling.ContactNotFoundException;
@@ -33,17 +34,28 @@ public class ContactService {
         contactToSave.setAddress(addressFound);
 
         Contact contactSaved = contactRepository.saveContact(contactToSave);
-        return modelMapper.map(contactSaved, ContactInfo.class);
+        return mapContactToContactInfo(contactSaved);
     }
 
     public ContactInfo getContactById(Integer contactId) {
         Contact contact = findContactById(contactId);
-        return modelMapper.map(contact, ContactInfo.class);
+        return mapContactToContactInfo(contact);
     }
 
     public void deleteContact(Integer contactId) {
         Contact contactToDelete = findContactById(contactId);
         contactRepository.deleteContact(contactToDelete);
+    }
+
+    private ContactInfo mapContactToContactInfo(Contact contact) {
+        ContactInfo contactInfo = modelMapper.map(contact, ContactInfo.class);
+        AddressForContactInfo addressForContactInfo = null;
+        if (!contact.getAddress().isDeleted()) {
+            addressForContactInfo = modelMapper.map(contact.getAddress(), AddressForContactInfo.class);
+        }
+
+        contactInfo.setAddress(addressForContactInfo);
+        return contactInfo;
     }
 
     private Contact findContactById(Integer contactId) {
