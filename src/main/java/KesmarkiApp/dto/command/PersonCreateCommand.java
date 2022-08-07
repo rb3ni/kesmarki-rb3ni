@@ -1,4 +1,4 @@
-package KesmarkiApp.dto;
+package KesmarkiApp.dto.command;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
